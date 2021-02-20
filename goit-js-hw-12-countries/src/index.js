@@ -1,18 +1,33 @@
 import './styles.css';
 import './js/fetchCountries';
+import countryTpl from './template/articles.hbs';
 
-// fetch("http://hn.algolia.com/api/v1/search?query=html&tags=story").then(rs => rs.json).then(data => console.log(data))
-
-const apiKey = 'aec8c3a5f51e439f9017f9d28555d3ea';
-const url = `http://newsapi.org/v2/everything?q=bitcoin&language=en`;
-const options = {
-    headers: {
-        Authorization: apiKey,
-    },
+const refs = {
+  searchCountry: document.querySelector('.js-search-form'),
+  countryContainer: document.querySelector('.js-country'),
 };
-fetch(url, options)
+
+refs.searchCountry.addEventListener('submit', event => {
+  event.preventDefault();
+  const form = event.currentTarget;
+  console.log(form);
+  const inputValue = form.elements.query.value;
+  console.log(inputValue);
+  const url = `https://restcountries.eu/rest/v2/name/${inputValue}`;
+
+  fetch(url, options)
     .then(res => res.json())
-    .then(data => console.log(data.articles))
-    .catch(error => console.log(error));
+    .then(data => {
+      console.log(data);
+      const murkup = countryTpl(data);
+      refs.countryContainer.insertAdjacentHTML('beforeend', murkup);
+    })
+    .catch(error => conaole.log(error));
 
-
+  const options = {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+    },
+  };
+});
