@@ -1,16 +1,17 @@
-/* const apiKey = 'aec8c3a5f51e439f9017f9d28555d3ea';
-function fetchArticles(searchQuery) {
-    const url = `http://newsapi.org/v2/everything?q=${searchQuery}&language=en`;
+function fetchCountries(searchQuery) {
+  const url = `https://restcountries.eu/rest/v2/name/${searchQuery}`;
 
-    const options = {
-        headers: {
-            Authorization: apiKey,
-        },
-    };
+  const options = {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+    },
+  };
 
-    return fetch(url, options)
-        .then(res => res.json()).then(data => data.articles)
-        .catch(error => console.log(error));
-};
+  return fetch(url, options)
+    .then(res => res.json())
+    .then(data => data)
+    .catch(error => conaole.log(error));
+}
 
-export default fetchArticles; */
+export default fetchCountries;

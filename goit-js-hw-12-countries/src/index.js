@@ -1,33 +1,19 @@
 import './styles.css';
 import './js/fetchCountries';
-import countryTpl from './template/articles.hbs';
+import refs from './js/refs';
+import fetchCountries from './js/fetchCountries';
+import updateCountry from './js/update-country';
+import debounce from 'lodash.debounce';
 
-const refs = {
-  searchCountry: document.querySelector('.js-search-form'),
-  countryContainer: document.querySelector('.js-country'),
-};
+refs.input.addEventListener(
+  'input',
+  debounce(event => {
+    event.preventDefault();
+    //const form = event.target;
+    const inputValue = event.target.value;
 
-refs.searchCountry.addEventListener('submit', event => {
-  event.preventDefault();
-  const form = event.currentTarget;
-  console.log(form);
-  const inputValue = form.elements.query.value;
-  console.log(inputValue);
-  const url = `https://restcountries.eu/rest/v2/name/${inputValue}`;
-
-  fetch(url, options)
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-      const murkup = countryTpl(data);
-      refs.countryContainer.insertAdjacentHTML('beforeend', murkup);
-    })
-    .catch(error => conaole.log(error));
-
-  const options = {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json',
-    },
-  };
-});
+    refs.countryContainer.innerHTML = '';
+    //form.reset();
+    fetchCountries(inputValue).then(updateCountry);
+  }, 500),
+);
