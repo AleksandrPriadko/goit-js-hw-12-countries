@@ -1,0 +1,54 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+.nameCountry {
+  display: flex;
+  justify-content: center;
+  font-size: 45px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  margin-right: 50px;
+  align-items: center;
+
+}
+
+.info {
+  display: flex;
+  justify-content: center;
+}
+
+.item {
+  display: block;
+  font-size: 21px;
+  font-weight: 600;
+}
+
+.items {
+  margin: 0;
+  list-style: none;
+}
+
+.item:nth-child(-n+2) {
+  margin-bottom: 35px;
+}
+
+.item-info {
+  display: inline-block;
+  font-weight: 400;
+}
+
+.items-country {
+
+  padding: 0;
+  margin: 0;
+}

@@ -4,7 +4,8 @@ import refs from './js/refs';
 import fetchCountries from './js/fetchCountries';
 import updateCountry from './js/update-country';
 import debounce from 'lodash.debounce';
-import errorMessage from './js/error-message';
+import './css/styles.css';
+
 refs.input.addEventListener(
   'input',
   debounce(event => {
