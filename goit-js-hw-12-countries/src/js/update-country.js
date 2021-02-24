@@ -1,30 +1,20 @@
 import refs from '../js/refs';
 import articles from '../template/articles.hbs';
 import countriesList from '../template/countriesList.hbs';
-import {
-  errorFetch,
-  errorQuerySpecific,
-  successQuery,
-  successQueryList,
-} from './error-message';
+import { errorFetch, alertQuerySpecific } from './error-message';
 
 function updateMarkup(data) {
   if (data.length === 1) {
     MarkupOne(data);
-    successQuery();
     return;
-  }
-  if (data.length > 2 && data.length <= 10) {
+  } else if (data.length > 2 && data.length <= 10) {
     MarkupList(data);
-    successQueryList();
     return;
-  }
-  if (data.length > 10) {
-    errorQuerySpecific();
+  } else if (data.length > 10) {
+    alertQuerySpecific();
     return;
-  } else {
+  } else if (data.status === 404) {
     errorFetch();
-    return;
   }
 }
 function MarkupOne(data) {
