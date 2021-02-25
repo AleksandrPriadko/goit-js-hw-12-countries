@@ -11,9 +11,7 @@ refs.input.addEventListener(
   debounce(event => {
     event.preventDefault();
     const form = event.target;
-    console.log(form);
     const inputValue = form.value;
-    console.log(inputValue);
 
     refs.countryContainer.innerHTML = '';
 
