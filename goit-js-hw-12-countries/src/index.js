@@ -1,5 +1,4 @@
 import './styles.css';
-import './js/fetchCountries';
 import refs from './js/refs';
 import fetchCountries from './js/fetchCountries';
 import updateCountry from './js/update-country';
@@ -12,9 +11,9 @@ refs.input.addEventListener(
     event.preventDefault();
     const form = event.target;
     const inputValue = form.value;
-
     refs.countryContainer.innerHTML = '';
-
-    fetchCountries(inputValue).then(updateCountry);
+    if (inputValue !== '') {
+      return fetchCountries(inputValue).then(updateCountry);
+    }
   }, 500),
 );

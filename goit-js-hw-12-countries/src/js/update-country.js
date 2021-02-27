@@ -4,8 +4,8 @@ import countriesList from '../template/countriesList.hbs';
 import { errorFetch, alertQuerySpecific } from './error-message';
 
 function updateMarkup(data) {
-  if (data.length === 1) {
-    MarkupOne(data);
+  if (data.status === 404) {
+    errorFetch();
     return;
   } else if (data.length > 2 && data.length <= 10) {
     MarkupList(data);
@@ -13,8 +13,9 @@ function updateMarkup(data) {
   } else if (data.length > 10) {
     alertQuerySpecific();
     return;
-  } else if (data.status === 404) {
-    errorFetch();
+  } else if (data.length === 1) {
+    MarkupOne(data);
+    return;
   }
 }
 function MarkupOne(data) {
